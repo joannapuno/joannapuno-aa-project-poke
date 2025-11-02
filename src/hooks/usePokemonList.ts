@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { getAllPokemon, getPokemonByName } from "@/lib/get-pokemon";
 import type { ThumbImg } from "@/types";
 
-export default function usePokemonList(pageSize = 20) {
+const usePokemonList = (pageSize = 20) => {
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(false);
   const [pokemonList, setPokemonList] = useState<{ name: string; thumbImg: ThumbImg }[]>([]);
@@ -38,3 +38,5 @@ export default function usePokemonList(pageSize = 20) {
 
   return { pokemonList, loading, page, setPage };
 }
+
+export default usePokemonList

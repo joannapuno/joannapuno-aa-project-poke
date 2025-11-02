@@ -1,9 +1,11 @@
 
 // POKEMON
 export interface Pokemon {
+  id: number
   name: string
   thumbImg: ThumbImg
-  baseStats: BaseStat[]
+  baseStats: BaseStat
+  profileStats: ProfileStat
   types: PokemonType[]
   abilities: string[]
 }
@@ -30,12 +32,20 @@ export const POKEMON_TYPES = [
   "shadow"
 ] as const
 
+export const STAT_LABELS = [
+  "hp", "attack", "height", "defense", "weight", "special-attack", "base-experience", "special-defense", "speed"
+] as const
+
 export type PokemonType = typeof POKEMON_TYPES[number]
 export type StatName = "hp" | "defense" | "special-defense" | "attack" | "special-attack" | "speed"
-export interface BaseStat {
-  name: StatName
-  value: number
-}
+export type Profile = "height" | "weight" | "base-experience"
+
+export type BaseStat = {
+  [K in StatName]: number;
+};
+export type ProfileStat = {
+  [K in Profile]: number;
+};
 export interface ThumbImg {
   default: string
   shiny: string
