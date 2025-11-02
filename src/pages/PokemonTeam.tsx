@@ -1,3 +1,4 @@
+import AppButton from "@/components/AppButton";
 import ListThumbnail from "@/components/ListThumbnail";
 import PokeIcon from "@/components/PokeIcon";
 import { PokemonContext } from "@/store/PokemonContext";
@@ -20,22 +21,19 @@ const PokemonTeam = () => {
               Current Team
             </h2>
 
-            <div className="space-x-4">
-              <button
+            <div className="space-x-2">
+              <AppButton
                 onClick={() => setIsEditing(!isEditing)}
-                className="bg-neutral-500 text-white text-sm rounded-full space-x-2 px-4 py-2"
-              >
-                <FontAwesomeIcon icon={faPencil} />
-                <span>Edit</span>
-              </button>
-
-              <button
+                label="Edit"
+                icon={faPencil}
+                className="bg-neutral-500 text-white hover:bg-neutral-600"
+              />
+              <AppButton
                 onClick={resetTeam}
-                className="bg-red-500 text-white text-sm rounded-full space-x-2 px-4 py-2"
-              >
-                <FontAwesomeIcon icon={faTrash} />
-                <span>Reset Team</span>
-              </button>
+                icon={faTrash}
+                label="Reset Team"
+                className="bg-red-500 text-white hover:bg-red-600"
+              />
             </div>
           </div>
 
@@ -58,7 +56,7 @@ const PokemonTeam = () => {
           <p className="text-lg font-medium mb-4">You don’t have a team yet!</p>
           <NavLink
             to="/"
-            className="text-white bg-neutral-500 rounded-full py-2 px-4 hover:bg-neutral-600"
+            className="text-white bg-neutral-500 px-3 py-1 rounded-full hover:bg-neutral-600"
           >
             Go to Pokémon List
           </NavLink>

@@ -1,3 +1,4 @@
+import AppButton from "@/components/AppButton";
 import StatRow from "@/components/StatRow";
 import TypeBadge from "@/components/TypeBadge";
 import usePokemonDetail from "@/hooks/usePokemonDetail";
@@ -55,26 +56,24 @@ const PokemonDetails = () => {
 
           {/* Add/Remove from Team */}
           {isInTeam(pokemon.name) ? (
-            <button
+            <AppButton
               onClick={() => removeFromTeam(pokemon.name)}
-              className="flex items-center gap-1 text-red-500 text-sm rounded-md py-1 px-2 hover:bg-red-100"
-            >
-              <FontAwesomeIcon icon={faMinus} />
-              <span>Remove</span>
-            </button>
+              icon={faMinus}
+              label="Remove"
+              className="text-red-500 hover:bg-red-100"
+            />
           ) : (
-            <button
+            <AppButton
               onClick={() => addToTeam(pokemon)}
               disabled={team.length >= 6}
-              className={`flex items-center gap-1 text-sm rounded-full py-2 px-4 ${
+              icon={faPlus}
+              label={team.length >= 6 ? "Team is full!" : "Add to team"}
+              className={`${
                 team.length >= 6
-                  ? "text-neutral-400 cursor-not-allowed bg-neutral-100"
+                  ? "text-neutral-400 bg-neutral-100"
                   : "text-purple-500 hover:bg-purple-100"
               }`}
-            >
-              <FontAwesomeIcon icon={faPlus} />
-              <span>{team.length >= 6 ? "Team is full!" : "Add to team"}</span>
-            </button>
+            />
           )}
 
           {/* Stats */}

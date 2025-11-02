@@ -27,7 +27,7 @@ const ListThumbnail = ({
 
   return (
     <NavLink to={`/pokemon/${name}`} className="relative">
-      <div className="border border-neutral-200 rounded-md hover:border-blue-500 hover:shadow-[0_0_10px_0_#a3a3a3cc] overflow-hidden">
+      <div className="border border-neutral-200 rounded-md hover:border-blue-500 hover:shadow-[0_0_10px_0_#a3a3a3cc] overflow-hidden transition-shadow">
         <figure className="bg-white p-3 w-full">
           <div className="relative bg-neutral-200 p-2 lg:p-5 flex items-center justify-center min-h-40">
             {isLoading && (
@@ -57,7 +57,7 @@ const ListThumbnail = ({
             e.stopPropagation();
             onRemove();
           }}
-          className="absolute -top-2 -right-2 bg-red-500 text-white text-sm rounded-full h-6 w-6"
+          className="absolute -top-2 -right-2 bg-red-500 text-white text-sm rounded-full h-6 w-6  transition-all hover:scale-110"
         >
           <FontAwesomeIcon icon={faMinus} />
           <span className="sr-only">Remove from team</span>
