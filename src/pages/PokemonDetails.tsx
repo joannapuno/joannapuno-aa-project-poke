@@ -24,7 +24,7 @@ const PokemonDetails = () => {
       {/* Breadcrumb */}
       <div className="flex items-center gap-2">
         <NavLink to="/" className="text-neutral-500 hover:text-neutral-800">
-          Pokemon
+          Pokémon
         </NavLink>
         <FontAwesomeIcon
           icon={faChevronRight}

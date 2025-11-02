@@ -60,7 +60,7 @@ const PokemonTeam = () => {
             to="/"
             className="text-white bg-neutral-500 rounded-full py-2 px-4 hover:bg-neutral-600"
           >
-            Go to Pokemon List
+            Go to Pokémon List
           </NavLink>
         </div>
       )}
