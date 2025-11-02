@@ -1,16 +1,21 @@
 import StatRow from "@/components/StatRow";
 import TypeBadge from "@/components/TypeBadge";
 import usePokemonDetail from "@/hooks/usePokemonDetail";
-import { Pokemon, STAT_LABELS } from "@/types";
-import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
+import { PokemonContext } from "@/store/PokemonContext";
+import {
+  faChevronRight,
+  faMinus,
+  faPlus,
+} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useContext } from "react";
 import { NavLink, useParams } from "react-router";
 
 const PokemonDetails = () => {
   const { name } = useParams();
   const { pokemon, loading } = usePokemonDetail(name);
-
-  console.log("pokemon", pokemon);
+  const { team, addToTeam, removeFromTeam, isInTeam } =
+    useContext(PokemonContext);
 
   if (loading || !pokemon) return <p>Loading…</p>;
 
@@ -47,6 +52,30 @@ const PokemonDetails = () => {
               ))}
             </div>
           </div>
+
+          {/* Add/Remove from Team */}
+          {isInTeam(pokemon.name) ? (
+            <button
+              onClick={() => removeFromTeam(pokemon.name)}
+              className="flex items-center gap-1 text-red-500 text-sm rounded-md py-1 px-2 hover:bg-red-100"
+            >
+              <FontAwesomeIcon icon={faMinus} />
+              <span>Remove</span>
+            </button>
+          ) : (
+            <button
+              onClick={() => addToTeam(pokemon)}
+              disabled={team.length >= 6}
+              className={`flex items-center gap-1 text-sm rounded-full py-2 px-4 ${
+                team.length >= 6
+                  ? "text-neutral-400 cursor-not-allowed bg-neutral-100"
+                  : "text-purple-500 hover:bg-purple-100"
+              }`}
+            >
+              <FontAwesomeIcon icon={faPlus} />
+              <span>{team.length >= 6 ? "Team is full!" : "Add to team"}</span>
+            </button>
+          )}
 
           {/* Stats */}
           <div className="border-y border-neutral-200 py-4">

@@ -1,27 +1,60 @@
-import { createContext, useState } from "react";
+import { createContext, useContext, useState } from "react";
+import type { Pokemon } from "@/types";
 
-export interface PokemonContextValue {}
+interface PokemonContextValue {
+  searchQuery: string;
+  setSearchQuery: (v: string) => void;
+  team: Pokemon[];
+  addToTeam: (p: Pokemon) => void;
+  removeFromTeam: (name: string) => void;
+  isInTeam: (name: string) => boolean;
+  resetTeam: () => void;
+}
 
 export const PokemonContext = createContext<PokemonContextValue>({
   searchQuery: "",
   setSearchQuery: () => {},
+  team: [],
+  addToTeam: () => {},
+  removeFromTeam: () => {},
+  isInTeam: () => false,
+  resetTeam: () => {},
 });
 
-interface Props {
+export default function PokemonContextProvider({
+  children,
+}: {
   children: React.ReactNode;
-}
+}) {
+  const [searchQuery, setSearchQuery] = useState("");
+  const [team, setTeam] = useState<Pokemon[]>([]);
 
-export default function PokemonContextProvider({ children }: Props) {
-  const [searchQuery, setSearchQuery] = useState<string>("");
+  const isInTeam = (name: string) => team.some((p) => p.name === name);
 
-  const ctxValue: PokemonContextValue = {
+  const addToTeam = (pokemon: Pokemon) => {
+    if (isInTeam(pokemon.name) || team.length >= 6) return;
+    setTeam([...team, pokemon]);
+  };
+
+  const removeFromTeam = (name: string) => {
+    setTeam(team.filter((p) => p.name !== name));
+  };
+
+  const resetTeam = () => setTeam([]);
+
+  const value = {
     searchQuery,
     setSearchQuery,
+    team,
+    addToTeam,
+    removeFromTeam,
+    isInTeam,
+    resetTeam,
   };
 
   return (
-    <PokemonContext.Provider value={ctxValue}>
-      {children}
-    </PokemonContext.Provider>
+    <PokemonContext.Provider value={value}>{children}</PokemonContext.Provider>
   );
 }
+
+export const usePokemonStore = () => useContext(PokemonContext);
