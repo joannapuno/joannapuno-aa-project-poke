@@ -6,8 +6,18 @@ import ListPagination from "@/components/ListPagination";
 import { PokemonContext } from "@/store/PokemonContext";
 
 const PokemonList = () => {
-  const { pokemonList } = usePokemonList();
+  const { pokemonList, page, totalPages, setPage } = usePokemonList();
   const { searchQuery, setSearchQuery } = useContext(PokemonContext);
+
+  const handleNextPage = () => {
+    const nextPage =
+      page !== Number(totalPages - 1) ? page + 1 : Number(totalPages - 1);
+    setPage(nextPage);
+  };
+  const handlePrevPage = () => {
+    if (page === 1) return;
+    setPage(page - 1);
+  };
 
   return (
     <>
@@ -32,7 +42,13 @@ const PokemonList = () => {
           </div>
 
           {/* Pagination */}
-          <ListPagination />
+          <ListPagination
+            totalPages={totalPages}
+            currentPage={page}
+            onSelect={setPage}
+            onNext={handleNextPage}
+            onPrevious={handlePrevPage}
+          />
         </section>
       </section>
     </>

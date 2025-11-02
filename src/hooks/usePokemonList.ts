@@ -4,25 +4,29 @@ import type { ThumbImg } from "@/types";
 
 const usePokemonList = (pageSize = 20) => {
   const [page, setPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(0)
   const [loading, setLoading] = useState(false);
   const [pokemonList, setPokemonList] = useState<{ name: string; thumbImg: ThumbImg }[]>([]);
 
   const fetchData = async () => {
     setLoading(true);
     try {
-      const { results } = await getAllPokemon(page, pageSize);
+      const { results, totalPages: tp } = await getAllPokemon(page, pageSize);
+
       const mappedPokemonList = await Promise.all(
         results.map(async (p: { name: string }) => {
           const pokemon = await getPokemonByName(p.name);
           return {
             name: pokemon.name,
             thumbImg: {
-              default: pokemon.sprites.other["official-artwork"].front_default,
-              shiny: pokemon.sprites.other["official-artwork"].front_shiny,
+              default: pokemon?.sprites?.other?.["official-artwork"]?.front_default ?? "",
+              shiny: pokemon?.sprites?.other?.["official-artwork"]?.front_shiny ?? "",
             },
           };
         })
       );
+
+      setTotalPages(tp)
       setPokemonList(mappedPokemonList);
     } catch (e) {
       // TODO:
@@ -36,7 +40,7 @@ const usePokemonList = (pageSize = 20) => {
     fetchData();
   }, [page, pageSize]);
 
-  return { pokemonList, loading, page, setPage };
+  return { pokemonList, loading, page, totalPages, setPage };
 }
 
 export default usePokemonList
