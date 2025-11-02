@@ -1,7 +1,7 @@
 import { useMemo, useState } from "react";
-import { faSearch, faTimes } from "@fortawesome/free-solid-svg-icons";
+import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-// import debounce from "@/utils/debounce";
+import debounce from "@/utils/debounce";
 
 interface Props {
   searchQuery: string;
@@ -12,12 +12,11 @@ const SearchInput = ({ searchQuery, onChange, ...attrs }: Props) => {
   const [query, setQuery] = useState(searchQuery ?? "");
 
   // Add a bit of delay on search change
-  // const debouncedChange = useMemo(() => debounce(onChange, 400), [onChange]);
+  const debouncedChange = useMemo(() => debounce(onChange, 400), [onChange]);
 
   const handleSearch = (val: string) => {
     setQuery(val);
-    // debouncedChange(val);
-    onChange(val);
+    debouncedChange(val);
   };
 
   return (
