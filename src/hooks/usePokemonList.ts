@@ -48,12 +48,21 @@ const usePokemonList = (searchQuery = "", pageSize = 20) => {
   const handleNextPage = () => setPage((p) => Math.min(p + 1, totalPages));
   const handlePrevPage = () => setPage((p) => Math.max(p - 1, 1));
 
-   // For handling searching
+  // For handling searching
   const loadAllPokemon = async () => {
-    if (allPokemon.length) return;
-    const { results } = await getAllPokemon(1, 100000);
-    setAllPokemon(results);
+    setLoading(true);
+    try {
+      if (allPokemon.length) return;
+      const { results } = await getAllPokemon(1, 100000);
+      setAllPokemon(results);
+    } catch (e) {
+      // TODO:
+      console.error(e);
+    } finally {
+      setLoading(false);
+    }
   };
+
   // Search Results
   const filteredPokemon = useMemo(() => {
     const q = searchQuery.trim().toLowerCase();

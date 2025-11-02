@@ -15,7 +15,7 @@ const ListPagination = ({
   onPrevious,
   onSelect,
 }: Props) => {
-  const maxVisible = 10;
+  const maxVisible = 5;
   const pages = Array.from({ length: totalPages }, (_, i) => i + 1);
 
   // Limiting how many page buttons to show
