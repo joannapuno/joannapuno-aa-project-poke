@@ -1,4 +1,5 @@
 import StatRow from "@/components/StatRow";
+import TypeBadge from "@/components/TypeBadge";
 import usePokemonDetail from "@/hooks/usePokemonDetail";
 import { Pokemon, STAT_LABELS } from "@/types";
 import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
@@ -40,15 +41,9 @@ const PokemonDetails = () => {
           <div className="pb-4">
             <span className="text-xs text-neutral-400">#{pokemon.id}</span>
             <h2 className="text-lg font-bold capitalize">{pokemon.name}</h2>
-            {/* TODO: types map */}
             <div className="flex gap-2">
               {pokemon.types.map((type) => (
-                <span
-                  key={type}
-                  className="text-xs bg-blue-100 text-blue-500 rounded-full px-2 py-1"
-                >
-                  {type}
-                </span>
+                <TypeBadge key={type} type={type} />
               ))}
             </div>
           </div>
