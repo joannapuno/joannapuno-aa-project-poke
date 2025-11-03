@@ -1,6 +1,7 @@
-import AppButton from "@/components/AppButton";
+import AppButton from "@/components/atoms/AppButton";
+import ShinyToggle from "@/components/ShinyToggle";
 import StatRow from "@/components/StatRow";
-import TypeBadge from "@/components/TypeBadge";
+import TypeBadge from "@/components/atoms/TypeBadge";
 import usePokemonDetail from "@/hooks/usePokemonDetail";
 import { PokemonContext } from "@/store/PokemonContext";
 import {
@@ -9,10 +10,11 @@ import {
   faPlus,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { NavLink, useParams } from "react-router";
 
 const PokemonDetails = () => {
+  const [showShiny, setShowShiny] = useState(false);
   const { name } = useParams<{ name: string }>();
   const { pokemon, loading } = usePokemonDetail(name ?? "");
   const { team, addToTeam, removeFromTeam, isInTeam } =
@@ -35,23 +37,31 @@ const PokemonDetails = () => {
       </div>
 
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-16 py-6">
-        <div className="flex justify-center items-center bg-neutral-300 p-2">
+        <div className="relative flex justify-center items-center bg-neutral-300 p-2">
           <img
-            src={pokemon.thumbImg.default}
+            src={showShiny ? pokemon.thumbImg.shiny : pokemon.thumbImg.default}
             alt={`Official artwork for ${name}`}
           />
         </div>
 
         <div className="md:px-10 space-y-4">
-          {/* Name and Types */}
-          <div className="space-y-1">
-            <span className="text-xs text-neutral-400">#{pokemon.id}</span>
-            <h2 className="text-lg font-bold capitalize">{pokemon.name}</h2>
-            <div className="flex gap-2">
-              {pokemon.types?.map((type) => (
-                <TypeBadge key={type} type={type} />
-              ))}
+          <div className="flex justify-between">
+            {/* Name and Types */}
+            <div className="space-y-1">
+              <span className="text-xs text-neutral-400">#{pokemon.id}</span>
+              <h2 className="text-lg font-bold capitalize">{pokemon.name}</h2>
+              <div className="flex gap-2">
+                {pokemon.types?.map((type) => (
+                  <TypeBadge key={type} type={type} />
+                ))}
+              </div>
             </div>
+
+            {/* Toggle shiny image */}
+            <ShinyToggle
+              checked={showShiny}
+              onChange={() => setShowShiny(!showShiny)}
+            />
           </div>
 
           {/* Stats */}
