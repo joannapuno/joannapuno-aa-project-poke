@@ -1,10 +1,9 @@
-import "./App.css";
-import PokemonContextProvider from "./store/PokemonContext";
+import PokemonContextProvider from "@/store/PokemonContext";
 import PageHeader from "@/components/PageHeader";
 import PokemonDetails from "@/pages/PokemonDetails";
 import PokemonList from "@/pages/PokemonList";
+import PokemonTeam from "@/pages/PokemonTeam";
 import { BrowserRouter, Route, Routes } from "react-router";
-import PokemonTeam from "./pages/PokemonTeam";
 
 const App = () => {
   return (
