@@ -60,7 +60,11 @@ const usePokemonList = (searchQuery = "", pageSize = 20) => {
 
       const details = await fetchPokemonDetails(slice);
       setPokemonList(details);
-    } finally {
+    } catch(e) {
+      // Ideally should handle these with a UI like Toast
+      console.error(e)
+    }
+    finally {
       setLoading(false);
     }
   };

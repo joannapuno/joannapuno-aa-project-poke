@@ -30,7 +30,7 @@ const usePokemonDetail = (name: string) => {
         abilities: data.abilities.map((a: any) => a.ability.name),
       });
     } catch (e) {
-      // TODO:
+      // Ideally should handle these with a UI like Toast
       console.error(e);
     } finally {
       setLoading(false);
