@@ -11,10 +11,10 @@ const StatRow = ({ label, value }: Props) => {
     return label.replace("-", " ");
   };
   return (
-    <div className="space-x-2 text-sm">
-      <span className="font-semibold capitalize">{renderLabel()}:</span>
-      <span className="text-neutral-500">{value}</span>
-    </div>
+    <dl className="flex items-center gap-2 text-sm">
+      <dt className="font-semibold capitalize">{renderLabel()}:</dt>
+      <dd className="text-neutral-500">{value}</dd>
+    </dl>
   );
 };
 export default StatRow;

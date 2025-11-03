@@ -28,8 +28,8 @@ const TypeBadge = ({ type }: { type: PokemonType }) => {
     <span
       key={type}
       className={`${styleMap[type]} text-xs capitalize rounded-full px-2 py-1`}
-      aria-label={type}
-      title={type}
+      aria-label={`${type} type`}
+      title={`${type} type`}
       data-type={type}
     >
       {type}

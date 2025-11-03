@@ -60,21 +60,23 @@ const PaginationControlBtn = ({
   );
 
   return (
-    <button
-      onClick={onClick}
-      disabled={disabled}
-      className={`${active ? "bg-blue-500 text-white" : ""} ${
-        type !== "next" ? "border-r" : ""
-      } text-center font-semibold py-2 px-4 border-neutral-400 disabled:pointer-events-none hover:bg-blue-500 hover:text-white disabled:opacity-40`}
-    >
-      {type === "next" ? (
-        nextIcon
-      ) : type === "previous" ? (
-        prevIcon
-      ) : (
-        <span>{label}</span>
-      )}
-    </button>
+    <li>
+      <button
+        onClick={onClick}
+        disabled={disabled}
+        className={`${active ? "bg-blue-500 text-white" : ""} ${
+          type !== "next" ? "border-r" : ""
+        } h-full text-center font-semibold py-2 px-4 border-neutral-400 disabled:pointer-events-none hover:bg-blue-500 hover:text-white disabled:opacity-40`}
+      >
+        {type === "next" ? (
+          nextIcon
+        ) : type === "previous" ? (
+          prevIcon
+        ) : (
+          <span>{label}</span>
+        )}
+      </button>
+    </li>
   );
 };
 

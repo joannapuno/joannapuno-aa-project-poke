@@ -28,9 +28,16 @@ const ListPagination = ({
   const visiblePages = pages.slice(start - 1, end);
 
   return (
-    <div className="flex items-center justify-center w-full">
-      <div className="flex border border-neutral-400 rounded-md overflow-hidden">
-        {/* Back */}
+    <div
+      className="flex items-center justify-center w-full"
+      role="navigation"
+      aria-label="Pagination"
+      aria-live="polite"
+    >
+      <ul
+        className="flex border border-neutral-400 rounded-md overflow-hidden"
+        aria-label="Pagination pages"
+      >
         <PaginationControlBtn
           type="previous"
           label="Previous page"
@@ -39,7 +46,7 @@ const ListPagination = ({
           onClick={onPrevious}
         />
 
-        {/* Ellipses */}
+        {/* First + Ellipses */}
         {start > 1 && (
           <>
             <PaginationControlBtn
@@ -49,7 +56,9 @@ const ListPagination = ({
               disabled={false}
               onClick={() => onSelect(1)}
             />
-            <span className="px-2 py-2 text-neutral-400 select-none">…</span>
+            <li className="px-2 py-2 text-neutral-400 select-none" aria-hidden>
+              …
+            </li>
           </>
         )}
 
@@ -61,24 +70,27 @@ const ListPagination = ({
             active={n === currentPage}
             disabled={false}
             onClick={() => onSelect(n)}
+            aria-current={n === currentPage ? "page" : undefined}
           />
         ))}
 
-        {/* Last page */}
+        {/* Ellipses + Last */}
         {end < totalPages && (
           <>
-            <span className="px-2 py-2 text-neutral-400 select-none">…</span>
+            <li className="px-2 py-2 text-neutral-400 select-none" aria-hidden>
+              …
+            </li>
             <PaginationControlBtn
               type="pageNumber"
               label={String(totalPages)}
               active={currentPage === totalPages}
               disabled={false}
               onClick={() => onSelect(totalPages)}
+              aria-current={currentPage === totalPages ? "page" : undefined}
             />
           </>
         )}
 
-        {/* Next */}
         <PaginationControlBtn
           type="next"
           label="Next page"
@@ -86,7 +98,9 @@ const ListPagination = ({
           active={false}
           onClick={onNext}
         />
-      </div>
+      </ul>
+
+      <span className="sr-only">{`Page ${currentPage} of ${totalPages}`}</span>
     </div>
   );
 };

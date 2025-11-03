@@ -26,10 +26,22 @@ const ListThumbnail = ({
   const handleError = () => setImgSrc(placeholder);
 
   return (
-    <NavLink to={`/pokemon/${name}`} className="relative">
-      <div className="border border-neutral-200 rounded-md hover:border-blue-500 hover:shadow-[0_0_10px_0_#a3a3a3cc] overflow-hidden transition-shadow">
+    <NavLink
+      to={`/pokemon/${name}`}
+      className="relative"
+      aria-label={`View details for ${name}`}
+    >
+      <div
+        className="border border-neutral-200 rounded-md hover:border-blue-500 hover:shadow-[0_0_10px_0_#a3a3a3cc] overflow-hidden transition-shadow"
+        role="group"
+        aria-labelledby={`${name}-label`}
+      >
         <figure className="bg-white p-3 w-full">
-          <div className="relative bg-neutral-300 p-2 lg:p-5 flex items-center justify-center min-h-40">
+          <div
+            className="relative bg-neutral-300 p-2 lg:p-5 flex items-center justify-center min-h-40"
+            role="img"
+            aria-label={`Official artwork for ${name}`}
+          >
             {isLoading && (
               <PokeIcon className="absolute text-white h-16 w-16 animate-spin" />
             )}
@@ -45,7 +57,10 @@ const ListThumbnail = ({
               }`}
             />
           </div>
-          <figcaption className="text-sm font-medium text-left capitalize py-2">
+          <figcaption
+            id={`${name}-label`}
+            className="text-sm font-medium text-left capitalize py-2"
+          >
             {name}
           </figcaption>
         </figure>
@@ -57,7 +72,8 @@ const ListThumbnail = ({
             e.stopPropagation();
             onRemove();
           }}
-          className="absolute -top-2 -right-2 bg-red-500 text-white text-sm rounded-full h-6 w-6  transition-all hover:scale-110"
+          className="absolute -top-2 -right-2 bg-red-500 text-white text-sm rounded-full h-6 w-6 transition-all hover:scale-110"
+          aria-label={`Remove ${name} from team`}
         >
           <FontAwesomeIcon icon={faMinus} />
           <span className="sr-only">Remove from team</span>

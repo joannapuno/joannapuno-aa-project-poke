@@ -8,7 +8,7 @@ const SortDropdown = () => {
   const { sortBy, setSortBy } = useContext(PokemonContext);
 
   return (
-    <form className="flex items-center gap-2">
+    <form className="flex items-center gap-2" aria-label="Sort Pokemon list">
       <label htmlFor="sort-by" className="space-x-1 text-neutral-500">
         <FontAwesomeIcon icon={faFilter} />
         <span>Sort by</span>
@@ -16,9 +16,11 @@ const SortDropdown = () => {
       <div className="min-w-32">
         <select
           id="sort-by"
+          name="sort-by"
           className="w-full border text-neutral-500 border-neutral-400 bg-neutral-50 rounded-md py-1 px-2"
           value={sortBy}
           onChange={(e) => setSortBy(e.target.value as SortBy)}
+          aria-label={`Sorted by ${sortBy}`}
         >
           <option value="id">ID</option>
           <option value="az">Alphabetically A-Z</option>

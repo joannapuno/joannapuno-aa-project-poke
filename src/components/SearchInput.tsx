@@ -20,12 +20,15 @@ const SearchInput = ({ searchQuery, onChange, ...attrs }: Props) => {
   };
 
   return (
-    <form className="relative w-full" role="search">
+    <form className="relative w-full" role="search" aria-label="Search Pokemon">
       <label htmlFor="txt-search" className="sr-only">
-        Search
+        Search Pokémon
       </label>
 
-      <div className="absolute top-0 bottom-0 left-0 text-neutral-400 pointer-events-none py-2 px-3">
+      <div
+        className="absolute top-0 bottom-0 left-0 text-neutral-400 pointer-events-none py-2 px-3"
+        aria-hidden
+      >
         <FontAwesomeIcon icon={faSearch} />
       </div>
 
