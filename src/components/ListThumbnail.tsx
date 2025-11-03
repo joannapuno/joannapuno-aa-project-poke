@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { NavLink } from "react-router";
 import type { ThumbImg } from "@/types";
-import PokeIcon from "./PokeIcon";
+import PokeIcon from "./atoms/PokeIcon";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMinus } from "@fortawesome/free-solid-svg-icons";
 

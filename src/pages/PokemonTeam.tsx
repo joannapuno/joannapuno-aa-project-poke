@@ -1,9 +1,8 @@
-import AppButton from "@/components/AppButton";
+import AppButton from "@/components/atoms/AppButton";
 import ListThumbnail from "@/components/ListThumbnail";
-import PokeIcon from "@/components/PokeIcon";
+import PokeIcon from "@/components/atoms/PokeIcon";
 import { PokemonContext } from "@/store/PokemonContext";
 import { faPencil, faTrash } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useContext, useState } from "react";
 import { NavLink } from "react-router";
 

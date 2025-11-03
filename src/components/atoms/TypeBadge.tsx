@@ -1,4 +1,4 @@
-import { PokemonType } from "@/types";
+import type { PokemonType } from "@/types";
 
 const TypeBadge = ({ type }: { type: PokemonType }) => {
   const styleMap: Record<PokemonType, string> = {

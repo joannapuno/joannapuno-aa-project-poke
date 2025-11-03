@@ -1,16 +1,15 @@
 import { useEffect, useState } from "react";
 import { getPokemonByName } from "@/lib/get-pokemon";
-import type { Pokemon, StatName, PokemonType, ProfileStat } from "@/types";
+import type { StatName, PokemonType, PokemonDetail } from "@/types";
 
 const usePokemonDetail = (name: string) => {
-  const [pokemon, setPokemon] = useState<Pokemon | null>(null);
+  const [pokemon, setPokemon] = useState<PokemonDetail | null>(null);
   const [loading, setLoading] = useState(false);
 
   const fetchData = async () => {
     setLoading(true);
     try {
       const data = await getPokemonByName(name);
-      console.log("data", data)
       setPokemon({
         id: data.id,
         name: data.name,

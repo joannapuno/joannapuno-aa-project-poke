@@ -1,4 +1,4 @@
-import { Profile, StatName } from "@/types";
+import type { Profile, StatName } from "@/types";
 
 interface Props {
   label: StatName | Profile;

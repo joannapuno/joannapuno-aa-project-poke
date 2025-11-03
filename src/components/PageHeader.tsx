@@ -1,5 +1,5 @@
 import { NavLink } from "react-router";
-import PokeIcon from "./PokeIcon";
+import PokeIcon from "./atoms/PokeIcon";
 
 const PageHeader = () => {
   const logo = new URL("/pokemon_logo.svg", import.meta.url).href;

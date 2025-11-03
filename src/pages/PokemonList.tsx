@@ -4,7 +4,7 @@ import SearchInput from "@/components/SearchInput";
 import { useContext } from "react";
 import ListPagination from "@/components/ListPagination";
 import { PokemonContext } from "@/store/PokemonContext";
-import SkeletonLoader from "@/components/SkeletonLoader";
+import SkeletonLoader from "@/components/atoms/SkeletonLoader";
 import SortDropdown from "@/components/SortDropdown";
 
 const PokemonList = () => {
