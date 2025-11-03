@@ -41,7 +41,7 @@ const PokemonTeam = () => {
 
           <div
             id="team-grid"
-            className="grid grid-cols-3 gap-6 pt-8"
+            className="grid grid-cols-1 sm:grid-cols-3 gap-6 pt-8"
             role="list"
             aria-label="Current Pokemon team"
           >
