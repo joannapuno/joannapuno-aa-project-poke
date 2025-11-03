@@ -29,8 +29,12 @@ const PokemonList = () => {
         </section>
 
         {/* List */}
-        <section>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 py-10">
+        <section aria-label="Pokemon results">
+          <div
+            className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 py-10"
+            role="list"
+            aria-busy={loading}
+          >
             {loading &&
               [...Array(8).keys()].map((l) => (
                 <SkeletonLoader

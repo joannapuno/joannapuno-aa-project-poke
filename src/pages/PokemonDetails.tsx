@@ -12,6 +12,7 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useContext, useState } from "react";
 import { NavLink, useParams } from "react-router";
+import PokeIcon from "@/components/atoms/PokeIcon";
 
 const PokemonDetails = () => {
   const [showShiny, setShowShiny] = useState(false);
@@ -20,12 +21,21 @@ const PokemonDetails = () => {
   const { team, addToTeam, removeFromTeam, isInTeam } =
     useContext(PokemonContext);
 
-  if (loading || !pokemon) return <p>Loading…</p>;
+  if (loading || !pokemon)
+    return (
+      <div className="flex justify-center items-center py-10">
+        <PokeIcon className="text-neutral-400 h-16 w-16 animate-spin" />
+      </div>
+    );
 
   return (
     <section className="max-w-[70rem] mx-auto py-10 px-4">
-      {/* Breadcrumb */}
-      <div className="flex items-center gap-2">
+      {/* Breadcrumb -- Ideally should be dynamic */}
+      <nav
+        className="flex items-center gap-2"
+        role="navigation"
+        aria-label="Breadcrumb"
+      >
         <NavLink to="/" className="text-neutral-500 hover:text-neutral-800">
           Pokémon
         </NavLink>
@@ -33,8 +43,13 @@ const PokemonDetails = () => {
           icon={faChevronRight}
           className="text-xs text-neutral-500"
         />
-        <p className="font-medium text-neutral-800 capitalize">{name}</p>
-      </div>
+        <p
+          className="font-medium text-neutral-800 capitalize"
+          aria-current="page"
+        >
+          {name}
+        </p>
+      </nav>
 
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-16 py-6">
         <div className="relative flex justify-center items-center bg-neutral-300 p-2">
@@ -45,12 +60,12 @@ const PokemonDetails = () => {
         </div>
 
         <div className="md:px-10 space-y-4">
-          <div className="flex justify-between">
+          <div className="flex justify-between items-start">
             {/* Name and Types */}
             <div className="space-y-1">
               <span className="text-xs text-neutral-400">#{pokemon.id}</span>
               <h2 className="text-lg font-bold capitalize">{pokemon.name}</h2>
-              <div className="flex gap-2">
+              <div className="flex gap-2" aria-label="Types">
                 {pokemon.types?.map((type) => (
                   <TypeBadge key={type} type={type} />
                 ))}
@@ -65,7 +80,7 @@ const PokemonDetails = () => {
           </div>
 
           {/* Stats */}
-          <div className="border-y border-neutral-200 py-4">
+          <div className="border-y border-neutral-200 py-4" aria-label="Stats">
             <div className="grid grid-cols-2 gap-3 bg-neutral-100 p-4">
               <StatRow label="hp" value={pokemon.baseStats.hp} />
               <StatRow label="attack" value={pokemon.baseStats.attack} />

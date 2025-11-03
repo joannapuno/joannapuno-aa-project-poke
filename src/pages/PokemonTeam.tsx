@@ -26,6 +26,9 @@ const PokemonTeam = () => {
                 label="Edit"
                 icon={faPencil}
                 className="bg-neutral-500 text-white hover:bg-neutral-600"
+                aria-pressed={isEditing}
+                aria-expanded={isEditing}
+                aria-controls="team-grid"
               />
               <AppButton
                 onClick={resetTeam}
@@ -36,7 +39,12 @@ const PokemonTeam = () => {
             </div>
           </div>
 
-          <div className="grid grid-cols-3 gap-6 pt-8">
+          <div
+            id="team-grid"
+            className="grid grid-cols-3 gap-6 pt-8"
+            role="list"
+            aria-label="Current Pokemon team"
+          >
             {team.map((pokemon) => {
               return (
                 <ListThumbnail
@@ -51,8 +59,11 @@ const PokemonTeam = () => {
           </div>
         </>
       ) : (
-        <div className="flex flex-col items-center justify-center py-20 text-neutral-500">
-          <p className="text-lg font-medium mb-4">You don’t have a team yet!</p>
+        <div
+          className="flex flex-col items-center justify-center py-20 text-neutral-500"
+          aria-label="Empty team state"
+        >
+          <p className="text-lg font-medium mb-4">You don't have a team yet!</p>
           <NavLink
             to="/"
             className="text-white bg-neutral-500 px-3 py-1 rounded-full hover:bg-neutral-600"
