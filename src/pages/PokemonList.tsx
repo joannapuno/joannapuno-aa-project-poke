@@ -23,7 +23,7 @@ const PokemonList = () => {
     <div className="bg-neutral-100">
       {/* Search.. */}
       <section className="max-w-[80rem] mx-auto flex flex-col py-10 px-14">
-        <section className="grid grid-cols-[1fr_auto] gap-4">
+        <section className="grid sm:grid-cols-[1fr_auto] gap-4">
           <SearchInput searchQuery={searchQuery} onChange={setSearchQuery} />
           <SortDropdown />
         </section>

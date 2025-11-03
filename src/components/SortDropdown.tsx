@@ -13,7 +13,7 @@ const SortDropdown = () => {
         <FontAwesomeIcon icon={faFilter} />
         <span>Sort by</span>
       </label>
-      <div className="min-w-32">
+      <div className="max-w-32">
         <select
           id="sort-by"
           name="sort-by"
