@@ -85,6 +85,7 @@ Currently simple, but it could evolve into a deeper team-builder experience (lev
 It also adds replay value and a sense of ownership to the app!
 
 ## 🚀 Future Improvements
+- Improve list layout on mobile — currently only one thumbnail per row, which causes excessive scrolling. Would revisit layout options (e.g., 2-column grid) after design discussion.
 - Add fuzzy searching
 - Global error handling (e.g. toasts for errors/success).
 - More filters (by type, height, weight).
