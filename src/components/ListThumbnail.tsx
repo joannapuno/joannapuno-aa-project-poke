@@ -29,7 +29,7 @@ const ListThumbnail = ({
     <NavLink to={`/pokemon/${name}`} className="relative">
       <div className="border border-neutral-200 rounded-md hover:border-blue-500 hover:shadow-[0_0_10px_0_#a3a3a3cc] overflow-hidden transition-shadow">
         <figure className="bg-white p-3 w-full">
-          <div className="relative bg-neutral-200 p-2 lg:p-5 flex items-center justify-center min-h-40">
+          <div className="relative bg-neutral-300 p-2 lg:p-5 flex items-center justify-center min-h-40">
             {isLoading && (
               <PokeIcon className="absolute text-white h-16 w-16 animate-spin" />
             )}

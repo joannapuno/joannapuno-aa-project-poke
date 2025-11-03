@@ -65,7 +65,7 @@ const PaginationControlBtn = ({
       disabled={disabled}
       className={`${active ? "bg-blue-500 text-white" : ""} ${
         type !== "next" ? "border-r" : ""
-      } text-center font-bold py-2 px-4 border-neutral-400 disabled:pointer-events-none hover:bg-blue-500 hover:text-white disabled:opacity-40`}
+      } text-center font-semibold py-2 px-4 border-neutral-400 disabled:pointer-events-none hover:bg-blue-500 hover:text-white disabled:opacity-40`}
     >
       {type === "next" ? (
         nextIcon
