@@ -11,10 +11,10 @@ const PokemonTeam = () => {
   const [isEditing, setIsEditing] = useState(false);
 
   return (
-    <section className="max-w-[50rem] mx-auto py-10 px-14">
+    <section className="max-w-[50rem] mx-auto py-10 px-2 sm:px-14">
       {team.length > 0 ? (
         <>
-          <div className="flex justify-between items-center">
+          <div className="flex justify-between items-center flex-wrap gap-4">
             <h2 className="flex items-center gap-2 text-2xl">
               <PokeIcon className="text-red-500 w-6 h-6" />
               Current Team
