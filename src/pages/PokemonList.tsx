@@ -5,6 +5,7 @@ import { useContext } from "react";
 import ListPagination from "@/components/ListPagination";
 import { PokemonContext } from "@/store/PokemonContext";
 import SkeletonLoader from "@/components/SkeletonLoader";
+import SortDropdown from "@/components/SortDropdown";
 
 const PokemonList = () => {
   const { searchQuery, setSearchQuery } = useContext(PokemonContext);
@@ -22,20 +23,24 @@ const PokemonList = () => {
     <div className="bg-neutral-100">
       {/* Search.. */}
       <section className="max-w-[80rem] mx-auto flex flex-col py-10 px-14">
-        <section>
+        <section className="grid grid-cols-[1fr_auto] gap-4">
           <SearchInput searchQuery={searchQuery} onChange={setSearchQuery} />
+          <SortDropdown />
         </section>
 
         {/* List */}
         <section>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 py-10">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 py-10">
             {loading &&
               [...Array(8).keys()].map((l) => (
-                <SkeletonLoader key={l} className="w-[14rem] h-[15rem]" />
+                <SkeletonLoader
+                  key={l}
+                  className="min-w-full max-w-[13rem] h-[13rem]"
+                />
               ))}
 
             {!loading &&
-              [...pokemonList].map((pokemon, i) => {
+              [...pokemonList].map((pokemon) => {
                 return (
                   <ListThumbnail
                     key={pokemon.name}

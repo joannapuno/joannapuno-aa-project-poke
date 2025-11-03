@@ -56,3 +56,5 @@ export interface SearchResult {
   name: string
   url: string
 }
+
+export type SortBy = "id" | "az" | "za";

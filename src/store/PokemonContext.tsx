@@ -1,9 +1,11 @@
 import { createContext, useContext, useState } from "react";
-import type { Pokemon } from "@/types";
+import type { Pokemon, SortBy } from "@/types";
 
 interface PokemonContextValue {
   searchQuery: string;
   setSearchQuery: (v: string) => void;
+  sortBy: SortBy;
+  setSortBy: (v: SortBy) => void;
   team: Pokemon[];
   addToTeam: (p: Pokemon) => void;
   removeFromTeam: (name: string) => void;
@@ -14,6 +16,8 @@ interface PokemonContextValue {
 export const PokemonContext = createContext<PokemonContextValue>({
   searchQuery: "",
   setSearchQuery: () => {},
+  sortBy: "id",
+  setSortBy: () => {},
   team: [],
   addToTeam: () => {},
   removeFromTeam: () => {},
@@ -27,24 +31,23 @@ export default function PokemonContextProvider({
   children: React.ReactNode;
 }) {
   const [searchQuery, setSearchQuery] = useState("");
+  const [sortBy, setSortBy] = useState<SortBy>("id");
   const [team, setTeam] = useState<Pokemon[]>([]);
 
   const isInTeam = (name: string) => team.some((p) => p.name === name);
-
   const addToTeam = (pokemon: Pokemon) => {
     if (isInTeam(pokemon.name) || team.length >= 6) return;
     setTeam([...team, pokemon]);
   };
-
-  const removeFromTeam = (name: string) => {
+  const removeFromTeam = (name: string) =>
     setTeam(team.filter((p) => p.name !== name));
-  };
-
   const resetTeam = () => setTeam([]);
 
-  const value = {
+  const ctxValue = {
     searchQuery,
     setSearchQuery,
+    sortBy,
+    setSortBy,
     team,
     addToTeam,
     removeFromTeam,
@@ -53,7 +56,9 @@ export default function PokemonContextProvider({
   };
 
   return (
-    <PokemonContext.Provider value={value}>{children}</PokemonContext.Provider>
+    <PokemonContext.Provider value={ctxValue}>
+      {children}
+    </PokemonContext.Provider>
   );
 }
 
