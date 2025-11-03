@@ -96,3 +96,4 @@ It also adds replay value and a sense of ownership to the app!
 - Support multiple instances of the same Pokemon (all-Gengar team!).
 - Dynamic stats by level or nature.
 - Team comparison and synergy visualization.
+- Add a quick "Add to team" from the list for lesser clicks
